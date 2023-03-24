@@ -94,14 +94,20 @@ nvm ls-remote --lts
 ```
 
 #### 설치할 NodeJS 버전
-- `v12.22.12   (Latest LTS: Erbium)`를 설치할 예정
+- `v16.19.1   (Latest LTS: Fermium)`를 설치할 예정
 - class 컴포넌트 React의 대부분의 예제는 NodeJS 10~14 버전 시절의 코드이기 때문에 호환성을 위해서 구버전의 NodeJS를 설치하여 class component를 연습할 예정
+- SSR을 사용하는 NextJS를 사용할 것을 염두에 두어 14.6.0 버전 이상의 NodeJS를 설치한다.
+- 애플 실리콘을 사용하는 경우 공식적으로 16버전부터 지원을 하며 이전 버전의 경우 설치 방법이 까다롭다. [참고](https://github.com/nvm-sh/nvm#macos-troubleshooting) 따라서 16버전을 설치하여 진행하도록 한다. 혹시 빌드를 취소하거나 빌드를 완료했다면 빌드에 필요한 임시 파일이 남아 있을 수 있으므로 `nvm cache clear` 명령으로 임시 파일을 지우도록 하자.
 
 #### NodeJS 설치하기
 ```
-nvm install v12.22.12
+nvm install v16.19.1
 ```
-- 위 명령어를 터미널에 입력하여 12버전의 NodeJS를 설치하도록 하자.
+또는
+```
+nvm install lts/gallium
+```
+- 위 명령어를 터미널에 입력하여 14버전의 NodeJS를 설치하도록 하자.
 
 #### NodeJS가 설치되어 있는지 확인
 ```
@@ -120,14 +126,14 @@ nvm ls
 ```
 - 위 명령을 입력하면
 ```
-      v12.22.12
+      v14.21.3
 ->     v18.15.0
-default -> v12.22.12
+default -> v14.21.3
 ```
 - 파란색 글자는 디폴트돌 선택되어 있는 NodeJS 버전이며, `->`와 함께 초록색으로 표기된 글자는 현재 NVM에서 사용중인 NodeJS 버전이다. 흰색 글씨는 NVM에 설치되어 있는 NodeJS 버전이다. 붉은 글자는 설치되지 않았기 때문에 사용할 수 없는 NodeJS 버전이며, 노란색 글자는 각 버전의 명칭이다.
-- 새로운 터미널을 열거나 컴퓨터를 새로 시작했다면 NVM은 NodeJS 버전을 default로 설정한다.
+- 새로운 터미널을 열거나 컴퓨터를 새로 시작했다면 NVM은 NodeJS 버전은 기본적으로 default로 설정되어 있다.
 ```
-default -> v12.22.12
+default -> v14.21.3
 ```
 - 다른 버전을 사용하려면 다음 명령어를 사용한다.
 ```
@@ -144,6 +150,13 @@ node --version
 ```
 nvm use 12
 ```
+- 다른 버전을 디폴트 버전으로 사용하고 싶다면
 ```
-nvm use default
+nvm alias default NodeJS의_원하는_버전
 ```
+
+#### 설치된 NodeJS 버전 지우기
+```
+nvm uninstall NodeJS의_원하는_버전
+```
+- 지워졌는지는 `nvm ls` 명령으로 확인할 수 있다.

@@ -1,0 +1,57 @@
+## NVM 설치
+### NVM이란?
+- NodeJS를 설치할 때 지정된 버전으로 설치되기 때문에 각기 다른 프로젝트에서 다양한 버전의 NodeJS를 사용하게 되면 에러가 발생하는 경우가 있다.
+- NVM을 사용하면 사용하고 싶은 NodeJS 버전으로 변경하여 사용할 수 있다는 장점이 있다.
+- NVM 공식 페이지 : https://github.com/nvm-sh/nvm
+
+### NVM 설치하기
+- `NVM_installer.sh`란 파일이 있다. 이 파일을 `sh` 명령어로 실행하자.
+```
+sh NVM_installer.sh
+```
+- 위 명령어를 통해서 NVM을 설치하였다.
+
+### NVM이 설치되어 있는지 확인하기
+- NVM은 `~/.nvm` 경로에 설치가 되므로 이 폴더에 파일이 있는지 확인하면 된다.
+- 디렉토리의 파일 목록을 확인할 때 쓰는 `ls`명령어를 사용하자.
+```
+ls ~/.nvm
+```
+- 명령을 실행하면 파일 리스트를 볼 수 있다.
+```
+CODE_OF_CONDUCT.md      Makefile                install.sh              test
+CONTRIBUTING.md         PROJECT_CHARTER.md      nvm-exec                update_test_mocks.sh
+Dockerfile              README.md               nvm.sh
+GOVERNANCE.md           ROADMAP.md              package.json
+LICENSE.md              bash_completion         rename_test.sh
+```
+
+### `nvm` 명령어 등록하기
+- 터미널 환경(command line)에서 `nvm` 명령어를 사용할 수 없는 상태이기 때문에 등록 해 줘야 한다.
+- 커멘드라인 명령어를 실행할 수 있도록 해 주는 툴을 쉘(shell)이라고 한다. 쉘은 여러 종류가 있으며, 대표적으로 `sh` `bash` `zsh`로 종류가 나뉜다.
+- 비쥬얼 스튜디오를 사용중이라면 상단 메뉴에서 Terminal->new Terminal을 클릭하게 되면 하단에 터미널이 나온다.
+터미널 창 오른쪽 상단에 보면 + 버튼이 있고 옆에 V표시의 버튼을 클릭하면 원하는 쉘을 선택할 수 있다.
+
+#### 쉘에 등록시키기
+```
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+- 위 명령어를  `~/.zshrc` 파일에 넣어야 하므로 파일의 뒷 부분에 문자열을 추가하는 명령어인 `>>`를 써서 `문자열 >> 파일경로`꼴의 형태로 써 준다. 그러면 다음과 같이 된다.
+```
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" >> ~/.zshrc
+```
+- 위 명령어를 실행시키자. 그러면 zsh 쉘에 nvm 명령어가 등록 된다.
+
+#### bash 쉘에 등록하기
+```
+>> ~/.zshrc
+```
+- 위 부분만 다른 것으로 바꿔주면 된다.
+- 맥 OS에서는 `~/.bash_profile` 파일에 넣어주면 된다. 이 파일이 없는 경우 `~/.bashrc` 파일에 넣어 주도록 하자.
+```
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" >> ~/.bash_profile
+```
+- 위 명령어를 복사하여 터미널에 입력하면 bash 쉘에서 nvm 명령어를 실행할 수 있다.

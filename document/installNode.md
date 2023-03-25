@@ -107,7 +107,7 @@ nvm install v16.19.1
 ```
 nvm install lts/gallium
 ```
-- 위 명령어를 터미널에 입력하여 14버전의 NodeJS를 설치하도록 하자.
+- 위 명령어를 터미널에 입력하여 16버전의 NodeJS를 설치하도록 하자.
 
 #### NodeJS가 설치되어 있는지 확인
 ```

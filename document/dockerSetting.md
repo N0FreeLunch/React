@@ -20,3 +20,20 @@ docker run -p 3000:3000 nextjs-docker
 http://localhost:3000/
 ```
 - 위 주소로 접근하면 웹 페이지가 나오는 것을 확인할 수 있다.
+
+### 도커 서버 중지하기
+- 도커 서버를 중지하기 위해서는 사용되고 있는 도커 인스턴스의 명칭을 알아야 한다.
+```
+docker ps
+```
+- 다음과 같은 리스트가 뜬다.
+```
+CONTAINER ID   IMAGE           COMMAND                  CREATED        STATUS        PORTS                                NAMES
+22efdcf1ad7d   nextjs-docker   "docker-entrypoint.s…"   15 hours ago   Up 15 hours   0.0.0.0:3000->3000/tcp               hungry_shamir
+```
+- nextJS가 실행중인 서버는 IMAGE 명칭이 `nextjs-docker`인 대상이고 이 대상의 컨테이너 아이디는 `22efdcf1ad7d`이다. 도커 인스턴스 아이디는 도커 인스턴스를 실행할 때 마다 바뀌기 때문에 위 예시의 아이디와 일치하지 않는다.
+- 도커를 인스턴스를 중지시키는 명령어는 ID로 중지할 도커 인스턴스를 선택한다. 다음 명령어로 도커를 정지시켜 보자.
+```
+docker stop 22efdcf1ad7d
+```
+- 삭제 되었는지를 확인하려면 `docker ps`라는 명령어를 실행하여 `22efdcf1ad7d   nextjs-docker   "docker-entrypoint.s…"   15 hours ago   Up 15 hours   0.0.0.0:3000->3000/tcp` 부분이 사라졌는지 확인하자.
